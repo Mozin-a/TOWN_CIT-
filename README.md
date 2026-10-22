@@ -114,13 +114,6 @@ main {
   margin-top: 20px;
 }
 
-.section-label {
-  color: var(--gold2);
-  text-align: center;
-  margin: 12px 0 22px;
-  font-size: 17px;
-}
-
 .cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -162,15 +155,6 @@ main {
   font-size: 12px;
   line-height: 1.8;
   margin: 0;
-}
-
-footer {
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  text-align: center;
-  padding: 25px 12px;
-  font-size: 12px;
-  line-height: 2.2;
 }
 
 .page {
@@ -370,17 +354,15 @@ footer {
 </main>
 
 <script>
-// إعدادات الربط (تمت تعبئتها ببياناتك)
 const JSONBIN_BIN_ID = "6ada2e1bffd5d1605383153c"; 
 const JSONBIN_API_KEY = "$2a$10$1Sbd.5T.7yoq3HH2ykIIw.Em2vYJBJmV3FEoOFobo63w/ghIRunv2"; 
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1562853512763801741/ky9MpmYs4u5715hls7bwzFD-HE_YcQp1lUYAjGiUgQ-z9Qhz-a3h3H8h9CM8pX063mZb";
 
 const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
 
-// جلب الرسائل من JSONBin عند فتح الموقع
 async function loadMessages() {
   try {
-    const response = await fetch(`${JSONBIN_URL}/latest`, {
+    const response = await fetch(JSONBIN_URL, {
       headers: { "X-Master-Key": JSONBIN_API_KEY }
     });
     const data = await response.json();
@@ -397,7 +379,6 @@ async function loadMessages() {
   }
 }
 
-// تحميل الرسائل فوراً وتحديثها كل 4 ثوانٍ
 loadMessages();
 setInterval(loadMessages, 4000);
 
@@ -419,7 +400,6 @@ function saveName() {
 
 document.getElementById("username").value = localStorage.getItem("townCityName") || "";
 
-// إرسال الرسالة
 document.getElementById("chatForm").addEventListener("submit", async function (e) {
   e.preventDefault();
   const input = document.getElementById("messageInput");
@@ -432,8 +412,7 @@ document.getElementById("chatForm").addEventListener("submit", async function (e
   input.value = "";
 
   try {
-    // 1. جلب الرسائل الحالية وإضافة الجديدة
-    const getRes = await fetch(`${JSONBIN_URL}/latest`, {
+    const getRes = await fetch(JSONBIN_URL, {
       headers: { "X-Master-Key": JSONBIN_API_KEY }
     });
     const getData = await getRes.json();
@@ -441,7 +420,6 @@ document.getElementById("chatForm").addEventListener("submit", async function (e
 
     currentMessages.push({ name: name, text: text, time: timeStr });
 
-    // 2. حفظ التحديث في JSONBin (حفظ دائم للأبد)
     await fetch(JSONBIN_URL, {
       method: "PUT",
       headers: {
@@ -456,7 +434,6 @@ document.getElementById("chatForm").addEventListener("submit", async function (e
     console.error("خطأ في حفظ الرسالة:", err);
   }
 
-  // 3. إرسال نسخة إلى ديسكورد عبر Webhook
   if (DISCORD_WEBHOOK_URL) {
     fetch(DISCORD_WEBHOOK_URL, {
       method: "POST",
