@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -200,63 +199,12 @@ footer {
   font-size: 14px;
 }
 
-.list {
-  display: grid;
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.list-btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  text-align: right;
-  color: var(--text);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 19px;
-  cursor: pointer;
-}
-
-.list-btn:hover { border-color: var(--gold); }
-
-.list-btn strong {
-  display: block;
-  color: var(--gold2);
-  margin-bottom: 6px;
-}
-
-.list-btn small { color: var(--muted); }
-
-.arrow { color: var(--gold); font-size: 20px; }
-
-.paper {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  line-height: 2.1;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  color: #e7e4dc;
-  min-height: 130px;
-}
-
-.notice {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 2;
-  margin-top: 17px;
-}
-
 .chat-box {
   border: 1px solid var(--border);
   border-radius: 15px;
   overflow: hidden;
   background: #14151c;
+  margin-top: 20px;
 }
 
 .chat-top {
@@ -271,14 +219,8 @@ footer {
 
 .chat-top strong { color: var(--gold2); }
 
-.chat-top small {
-  color: var(--muted);
-  display: block;
-  margin-top: 5px;
-}
-
 .messages {
-  height: 310px;
+  height: 380px;
   overflow-y: auto;
   padding: 15px;
   display: flex;
@@ -291,7 +233,7 @@ footer {
   border: 1px solid var(--border);
   border-radius: 11px;
   padding: 12px;
-  max-width: 90%;
+  max-width: 85%;
   align-self: flex-start;
   overflow-wrap: anywhere;
 }
@@ -299,13 +241,13 @@ footer {
 .message .author {
   color: var(--gold2);
   font-size: 12px;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
 .message .body {
   white-space: pre-wrap;
-  line-height: 1.8;
+  line-height: 1.6;
   font-size: 14px;
 }
 
@@ -313,6 +255,7 @@ footer {
   color: var(--muted);
   font-size: 10px;
   margin-top: 6px;
+  text-align: left;
 }
 
 .chat-compose {
@@ -343,57 +286,23 @@ footer {
   cursor: pointer;
 }
 
-.voice-panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 17px;
-  margin-top: 15px;
-  text-align: center;
-}
-
-.voice-panel p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 2;
-}
-
-.voice-btn {
-  border: 1px solid var(--gold);
-  border-radius: 10px;
-  background: #c5a35416;
-  color: var(--gold2);
-  padding: 12px;
-  cursor: pointer;
-}
-
 .profile-form {
-  display: grid;
+  display: flex;
   gap: 10px;
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 
 .profile-form input {
+  flex: 1;
   padding: 12px;
   background: var(--panel2);
   border: 1px solid var(--border);
   color: white;
   border-radius: 9px;
-  width: 100%;
 }
 
 @media (min-width: 700px) {
   .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .card { min-height: 215px; padding-top: 36px; }
-  .messages { height: 430px; }
-}
-
-@media (max-width: 360px) {
-  header { padding: 13px 3%; }
-  .brand { font-size: 16px; }
-  .header-btn { padding: 9px; }
-  .chat-compose { flex-wrap: wrap; }
-  .chat-compose input { flex-basis: 100%; }
 }
 </style>
 </head>
@@ -410,320 +319,173 @@ footer {
 
 <main>
 
-<!-- الصفحة الرئيسية -->
 <section id="home" class="page active">
   <div class="hero">
     <div class="ornament">༺ ━━━━━ ✦ ━━━━━ ༻</div>
     <h1>أهلًا بك في <span>تاون ستي</span></h1>
-    <p>
-      ✦ بوابتك الرسمية إلى أخبار المدينة وقوانينها ✦
-      <br>
-      النظام أساس الحكم، والعدل أساس الاستقرار.
-    </p>
+    <p>بوابتك الرسمية إلى أخبار المدينة وقوانينها</p>
     <div class="status">◆ البوابة الرسمية للمدينة ◆</div>
   </div>
 
-  <h2 class="section-label">༺ اختر وجهتك ༻</h2>
-
   <div class="cards">
-    <button class="card" onclick="openList('laws')">
-      <span class="emoji">📚</span>
-      <h2>⚖ قوانين المدينة</h2>
-      <p>قوانين الرول والمسؤولين والديسكورد</p>
-    </button>
-
-    <button class="card" onclick="openList('news')">
-      <span class="emoji">📰</span>
-      <h2>✦ أخبار المدينة</h2>
-      <p>آخر المستجدات والإعلانات الرسمية</p>
-    </button>
-
-    <button class="card" onclick="openPage('social')">
-      <span class="emoji">🌐</span>
-      <h2>◈ مواقع السيرفر الرسمية</h2>
-      <p>بوابات التواصل الرسمية للمدينة</p>
-    </button>
-
     <button class="card" onclick="openPage('chat')">
       <span class="emoji">💬</span>
       <h2>✧ الشات العام</h2>
-      <p>مساحة التواصل بين المواطنين</p>
+      <p>مساحة التواصل الحية بين المواطنين</p>
     </button>
   </div>
 </section>
 
-<!-- قوائم القوانين والأخبار -->
-<section id="list" class="page">
-  <button class="back-btn" onclick="goHome()">→ رجوع</button>
-  <div class="page-heading">
-    <div class="ornament">༺ ✦ ༻</div>
-    <h1 id="listTitle">القسم</h1>
-    <p id="listDescription">اختر القسم الذي تريد الاطلاع عليه.</p>
-  </div>
-  <div class="list" id="listItems"></div>
-</section>
-
-<!-- صفحات النصوص -->
-<section id="article" class="page">
-  <button class="back-btn" onclick="goBack()">→ رجوع</button>
-  <div class="page-heading">
-    <div class="ornament">༺ ━ ✦ ━ ༻</div>
-    <h1 id="articleTitle">عنوان الصفحة</h1>
-    <p>✦ بوابة تاون ستي الرسمية ✦</p>
-  </div>
-  <div class="paper" id="articleContent"></div>
-  <p class="notice">هذه الصفحة مخصصة للقراءة فقط. تصدر التحديثات من إدارة الموقع.</p>
-</section>
-
-<!-- المواقع الرسمية -->
-<section id="social" class="page">
-  <button class="back-btn" onclick="goHome()">→ رجوع</button>
-  <div class="page-heading">
-    <div class="emoji">🌐</div>
-    <h1>مواقع السيرفر الرسمية</h1>
-    <p>جميع البوابات الرسمية لمدينة تاون ستي في مكان واحد.</p>
-  </div>
-  <div class="paper" id="socialContent">༺ ✦ المواقع الرسمية ✦ ༻
-
-سيتم إضافة روابط الديسكورد ومواقع المدينة الرسمية هنا بعد استلامها من الإدارة.
-
-تنبيه: تأكد من صحة الرابط قبل إدخال أي معلومات شخصية.</div>
-</section>
-
-<!-- الشات -->
+<!-- صفحة الشات العام المباشر -->
 <section id="chat" class="page">
   <button class="back-btn" onclick="goHome()">→ رجوع</button>
   <div class="page-heading">
     <div class="ornament">༺ ✦ ༻</div>
-    <h1>الشات العام</h1>
-    <p>ملتقى المواطنين للتواصل والنقاش باحترام.</p>
+    <h1>الشات العام المباشر</h1>
+    <p>الرسائل محفوظة ومباشرة للجميع</p>
   </div>
 
   <div class="profile-form">
-    <label for="username">اسمك الظاهر في الشات</label>
-    <input id="username" maxlength="24" placeholder="اكتب اسمك هنا">
+    <input id="username" maxlength="24" placeholder="اسمك في الشات...">
     <button class="gold-btn" onclick="saveName()">حفظ الاسم</button>
   </div>
 
   <div class="chat-box">
     <div class="chat-top">
-      <div>
-        <strong>✦ مجلس المواطنين</strong>
-        <small id="chatStatus">وضع تجريبي على هذا الجهاز</small>
-      </div>
-      <span>💬</span>
+      <strong>✦ مجلس المواطنين الحي</strong>
+      <span id="chatStatus">🟢 متصل</span>
     </div>
 
-    <div class="messages" id="messages" aria-live="polite">
-      <div class="message">
-        <div class="author">إدارة تاون ستي</div>
-        <div class="body">أهلًا بكم في الشات العام. يرجى الالتزام بالأدب والاحترام.</div>
-      </div>
+    <div class="messages" id="messages">
+      <!-- الرسائل ستظهر هنا مباشرة -->
     </div>
 
     <form class="chat-compose" id="chatForm">
-      <input id="messageInput" maxlength="500"
-        placeholder="اكتب رسالتك..." autocomplete="off"
-        aria-label="نص الرسالة">
+      <input id="messageInput" maxlength="500" placeholder="اكتب رسالتك..." autocomplete="off">
       <button class="gold-btn" type="submit">إرسال</button>
     </form>
   </div>
-
-  <div class="voice-panel">
-    <h3>🎙 المجلس الصوتي</h3>
-    <p>
-      هذه الواجهة تمهيدية فقط. الاتصال الصوتي الحقيقي بين المواطنين
-      يحتاج إلى خدمة صوتية وخادم متصل بالإنترنت.
-    </p>
-    <button class="voice-btn" onclick="voiceInfo()">
-      معلومات الاتصال الصوتي
-    </button>
-    <p id="voiceStatus"></p>
-  </div>
-
-  <p class="notice">
-    النسخة الحالية تعرض رسائلك محليًا على جهازك فقط.
-    لا ترسل معلومات شخصية أو كلمات مرور.
-  </p>
 </section>
 
 </main>
 
-<footer>
-  <div class="ornament">༺ ━━━━━ ✦ ━━━━━ ༻</div>
-  <strong>✦ TOWN CITY | تاون ستي ✦</strong>
-  <br>
-  النظام • العدالة • المسؤولية
-  <br>
-  جميع الحقوق محفوظة لإدارة المدينة © 2026
-</footer>
-
 <script>
-const sections = ["home", "list", "article", "social", "chat"];
-let previousPage = "list";
+// إعدادات الربط (تمت تعبئتها ببياناتك)
+const JSONBIN_BIN_ID = "6ada2e1bffd5d1605383153c"; 
+const JSONBIN_API_KEY = "$2a$10$1Sbd.5T.7yoq3HH2ykIIw.Em2vYJBJmV3FEoOFobo63w/ghIRunv2"; 
+const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1562853512763801741/ky9MpmYs4u5715hls7bwzFD-HE_YcQp1lUYAjGiUgQ-z9Qhz-a3h3H8h9CM8pX063mZb";
 
-const data = {
-  laws: {
-    title: "⚖ قوانين المدينة",
-    description: "الأنظمة والتعليمات المعتمدة في تاون ستي.",
-    items: [
-      ["📜", "قوانين الرول", "قواعد تقمص الأدوار داخل المدينة"],
-      ["💠", "قوانين الديسكورد", "قواعد مجتمع الديسكورد"],
-      ["🏛️", "قوانين المسؤولين", "واجبات وصلاحيات المسؤولين"]
-    ]
-  },
-  news: {
-    title: "📰 الأخبار والإعلانات",
-    description: "تابع آخر أخبار المدينة والسيرفر.",
-    items: [
-      ["🏙️", "أخبار المدينة", "القرارات والمستجدات المحلية"],
-      ["🎮", "أخبار السيرفر", "التحديثات والإعلانات داخل اللعبة"],
-      ["💠", "أخبار الديسكورد", "الإعلانات الخاصة بمجتمع الديسكورد"]
-    ]
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+
+// جلب الرسائل من JSONBin عند فتح الموقع
+async function loadMessages() {
+  try {
+    const response = await fetch(`${JSONBIN_URL}/latest`, {
+      headers: { "X-Master-Key": JSONBIN_API_KEY }
+    });
+    const data = await response.json();
+    const messages = data.record || [];
+    
+    const messagesDiv = document.getElementById("messages");
+    messagesDiv.innerHTML = "";
+
+    messages.forEach(msg => {
+      displayMessage(msg.name, msg.text, msg.time);
+    });
+  } catch (err) {
+    console.error("خطأ في جلب الرسائل:", err);
   }
-};
+}
 
-const articles = {
-  "قوانين الرول": "سيتم إضافة قوانين الرول الرسمية هنا لاحقًا.",
-  "قوانين الديسكورد": "سيتم إضافة قوانين الديسكورد الرسمية هنا لاحقًا.",
-  "قوانين المسؤولين": "سيتم إضافة قوانين المسؤولين الرسمية هنا لاحقًا.",
-  "أخبار المدينة": "سيتم إضافة أخبار المدينة وإعلاناتها هنا لاحقًا.",
-  "أخبار السيرفر": "سيتم إضافة أخبار السيرفر وتحديثاته هنا لاحقًا.",
-  "أخبار الديسكورد": "سيتم إضافة أخبار الديسكورد هنا لاحقًا."
-};
+// تحميل الرسائل فوراً وتحديثها كل 4 ثوانٍ
+loadMessages();
+setInterval(loadMessages, 4000);
 
 function openPage(id) {
-  sections.forEach(function (section) {
-    document.getElementById(section).classList.remove("active");
-  });
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function goHome() {
-  openPage("home");
-}
-
-function openList(type) {
-  const section = data[type];
-  if (!section) return;
-
-  document.getElementById("listTitle").textContent = section.title;
-  document.getElementById("listDescription").textContent =
-    section.description;
-
-  const container = document.getElementById("listItems");
-  container.replaceChildren();
-
-  section.items.forEach(function (item) {
-    const button = document.createElement("button");
-    button.className = "list-btn";
-
-    const text = document.createElement("div");
-    const title = document.createElement("strong");
-    const desc = document.createElement("small");
-
-    title.textContent = item[0] + " " + item[1];
-    desc.textContent = item[2];
-    text.append(title, desc);
-
-    const arrow = document.createElement("span");
-    arrow.className = "arrow";
-    arrow.textContent = "‹";
-
-    button.append(text, arrow);
-    button.addEventListener("click", function () {
-      previousPage = "list";
-      openArticle(item[1]);
-    });
-
-    container.appendChild(button);
-  });
-
-  openPage("list");
-}
-
-function openArticle(title) {
-  document.getElementById("articleTitle").textContent = title;
-  document.getElementById("articleContent").textContent =
-    articles[title] || "سيتم إضافة المحتوى الرسمي لاحقًا.";
-  openPage("article");
-}
-
-function goBack() {
-  openPage(previousPage);
-}
+function goHome() { openPage("home"); }
 
 function saveName() {
-  const field = document.getElementById("username");
-  const name = field.value.trim();
-
-  if (!name) {
-    alert("اكتب اسمًا أولًا.");
-    return;
+  const name = document.getElementById("username").value.trim();
+  if (name) {
+    localStorage.setItem("townCityName", name);
+    alert("تم حفظ اسمك بنجاح!");
   }
+}
+
+document.getElementById("username").value = localStorage.getItem("townCityName") || "";
+
+// إرسال الرسالة
+document.getElementById("chatForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const input = document.getElementById("messageInput");
+  const text = input.value.trim();
+  let name = document.getElementById("username").value.trim() || "مواطن";
+
+  if (!text) return;
+
+  const timeStr = new Date().toLocaleTimeString("ar", { hour: "2-digit", minute: "2-digit" });
+  input.value = "";
 
   try {
-    localStorage.setItem("townCityName", name);
-  } catch (error) {
-    // Storage may be unavailable in some browsers.
-  }
+    // 1. جلب الرسائل الحالية وإضافة الجديدة
+    const getRes = await fetch(`${JSONBIN_URL}/latest`, {
+      headers: { "X-Master-Key": JSONBIN_API_KEY }
+    });
+    const getData = await getRes.json();
+    let currentMessages = getData.record || [];
 
-  alert("تم حفظ الاسم على هذا الجهاز إن كان التخزين متاحًا.");
-}
+    currentMessages.push({ name: name, text: text, time: timeStr });
 
-try {
-  document.getElementById("username").value =
-    localStorage.getItem("townCityName") || "";
-} catch (error) {
-  // Continue without local storage.
-}
-
-document.getElementById("chatForm").addEventListener(
-  "submit",
-  function (event) {
-    event.preventDefault();
-
-    const input = document.getElementById("messageInput");
-    const message = input.value.trim();
-    let name = document.getElementById("username").value.trim();
-
-    if (!message) return;
-
-    if (!name) name = "مواطن";
-
-    const bubble = document.createElement("div");
-    bubble.className = "message";
-
-    const author = document.createElement("div");
-    author.className = "author";
-    author.textContent = name;
-
-    const body = document.createElement("div");
-    body.className = "body";
-    body.textContent = message;
-
-    const time = document.createElement("div");
-    time.className = "time";
-    time.textContent = new Date().toLocaleTimeString("ar", {
-      hour: "2-digit",
-      minute: "2-digit"
+    // 2. حفظ التحديث في JSONBin (حفظ دائم للأبد)
+    await fetch(JSONBIN_URL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": JSONBIN_API_KEY
+      },
+      body: JSON.stringify(currentMessages)
     });
 
-    bubble.append(author, body, time);
-
-    const messages = document.getElementById("messages");
-    messages.appendChild(bubble);
-    messages.scrollTop = messages.scrollHeight;
-
-    input.value = "";
-    input.focus();
+    displayMessage(name, text, timeStr);
+  } catch (err) {
+    console.error("خطأ في حفظ الرسالة:", err);
   }
-);
 
-function voiceInfo() {
-  document.getElementById("voiceStatus").textContent =
-    "الاتصال الصوتي غير مفعّل بعد. سنحتاج إلى إعداد خدمة صوتية وربطها بالموقع.";
+  // 3. إرسال نسخة إلى ديسكورد عبر Webhook
+  if (DISCORD_WEBHOOK_URL) {
+    fetch(DISCORD_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: name + " (من الموقع)",
+        content: text
+      })
+    }).catch(err => console.error("Discord error:", err));
+  }
+});
+
+function displayMessage(name, text, time) {
+  const messagesDiv = document.getElementById("messages");
+  const bubble = document.createElement("div");
+  bubble.className = "message";
+  bubble.innerHTML = `
+    <div class="author">${escapeHtml(name)}</div>
+    <div class="body">${escapeHtml(text)}</div>
+    <div class="time">${time}</div>
+  `;
+  messagesDiv.appendChild(bubble);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, match => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[match]));
 }
 </script>
 
